@@ -5,6 +5,7 @@ import { UpdatePasswordDto } from './dto/update-password.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import * as bcrypt from 'bcrypt';
 
 @Controller('users')
 @UseGuards(JwtAuthGuard, RolesGuard)
@@ -13,8 +14,12 @@ export class UsersController {
 
   @Post()
   @Roles('admin')
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
+    return this.usersService.create({
+      ...createUserDto,
+      password: hashedPassword,
+    });
   }
 
   @Get()

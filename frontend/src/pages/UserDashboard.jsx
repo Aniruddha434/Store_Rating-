@@ -50,9 +50,9 @@ function UserDashboard({ user, onLogout }) {
         </div>
       </div>
       <div className="container">
-        <div style={{ marginBottom: '20px' }}>
-          <button onClick={() => setView('stores')}>Stores</button>
-          <button onClick={() => setView('password')} style={{ marginLeft: '8px' }}>Change Password</button>
+        <div className="btn-group">
+          <button onClick={() => setView('stores')} style={view === 'stores' ? { background: '#238636', borderColor: '#238636' } : {}}>Browse Stores</button>
+          <button onClick={() => setView('password')} style={view === 'password' ? { background: '#238636', borderColor: '#238636' } : {}}>Change Password</button>
         </div>
 
         {view === 'stores' && (

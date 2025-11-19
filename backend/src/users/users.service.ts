@@ -13,11 +13,8 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    const hashedPassword = await bcrypt.hash(createUserDto.password, 10);
-    const user = this.usersRepository.create({
-      ...createUserDto,
-      password: hashedPassword,
-    });
+    // Password should already be hashed by the caller (AuthService or Admin)
+    const user = this.usersRepository.create(createUserDto);
     return this.usersRepository.save(user);
   }
 

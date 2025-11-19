@@ -67,12 +67,12 @@ function AdminDashboard({ user, onLogout }) {
         </div>
       </div>
       <div className="container">
-        <div style={{ marginBottom: '20px' }}>
-          <button onClick={() => setView('dashboard')}>Dashboard</button>
-          <button onClick={() => setView('users')} style={{ marginLeft: '8px' }}>Users</button>
-          <button onClick={() => setView('stores')} style={{ marginLeft: '8px' }}>Stores</button>
-          <button onClick={() => setView('addUser')} style={{ marginLeft: '8px' }}>Add User</button>
-          <button onClick={() => setView('addStore')} style={{ marginLeft: '8px' }}>Add Store</button>
+        <div className="btn-group">
+          <button onClick={() => setView('dashboard')} style={view === 'dashboard' ? { background: '#238636', borderColor: '#238636' } : {}}>Dashboard</button>
+          <button onClick={() => setView('users')} style={view === 'users' ? { background: '#238636', borderColor: '#238636' } : {}}>Users</button>
+          <button onClick={() => setView('stores')} style={view === 'stores' ? { background: '#238636', borderColor: '#238636' } : {}}>Stores</button>
+          <button onClick={() => setView('addUser')} style={view === 'addUser' ? { background: '#238636', borderColor: '#238636' } : {}}>Add User</button>
+          <button onClick={() => setView('addStore')} style={view === 'addStore' ? { background: '#238636', borderColor: '#238636' } : {}}>Add Store</button>
         </div>
 
         {view === 'dashboard' && (
